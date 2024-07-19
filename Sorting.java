@@ -166,46 +166,6 @@ public class Sorting <ElementType> extends ArrayList<ElementType>{
         // Insert objPos1 into position 2
         add(inPos2, objPos1);
     }
-
-        /* BUBBLE SORT */
-        public void simpleBubbleSort2() {
-            // write the simpleBubbleSort() method
-            //it simply compares neighbours repeatedly until there are no more swaps        
-            boolean bMoreSwaps = true;
-    
-            while (bMoreSwaps == true) {
-                int iCount;
-                bMoreSwaps = false;
-                for (iCount = 0; iCount < size() - 1; iCount++) {
-                    Comparable elementAtiCount = (Comparable) get(iCount);
-
-                    Comparable elementAtiCountPlus = (Comparable) get(iCount + 1);
-    
-                    if (elementAtiCount.compareTo(elementAtiCountPlus) > 0) {
-                        swap2(iCount, iCount + 1);
-                        bMoreSwaps = true;
-                    }
-                }
-            }
-        }
-        
-        public void swap2(int inPos1, int inPos2) {
-            //Create two objects that will store the info from the two positions
-            ElementType objPos1 = get(inPos1);
-            ElementType objPos2 = get(inPos2);
-    
-            //Remove element from position 1
-            remove(inPos1);
-    
-            //Insert objPos2 into position 1
-            add(inPos1, objPos2);
-    
-            //Remove element from position 2
-            remove(inPos2);
-    
-            // Insert objPos1 into position 2
-            add(inPos2, objPos1);
-        }
 }
 
 
