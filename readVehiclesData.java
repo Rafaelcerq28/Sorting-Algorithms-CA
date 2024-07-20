@@ -23,7 +23,7 @@ public class readVehiclesData {
         //variables to save start time, end time and execution time
         long startTime;
         long endTime;
-        long executionTime;
+        long executionTime; 
 
         System.out.println("\nQuick Sort:");
         startTime = System.currentTimeMillis();
