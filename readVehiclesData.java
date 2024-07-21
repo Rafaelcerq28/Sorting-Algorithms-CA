@@ -43,7 +43,6 @@ public class readVehiclesData {
         System.out.println("Execution time: " + executionTime + "ms - " + (executionTime/1000) +"s");
         System.out.println();
 
-
         // System.out.println("After sorting");
         // for(int i=0;i<vehiclesQSorting.size();i++){
         //     System.out.println(vehiclesQSorting.get(i));
