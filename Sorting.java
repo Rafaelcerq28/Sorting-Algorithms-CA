@@ -3,85 +3,84 @@ import java.util.*;
 
 public class Sorting <ElementType> extends ArrayList<ElementType>{
     /* QUICK SORT */
-    public void quickSort(int iStart, int iEnd) {
-        int iPivotIndex;
-        if (iStart < iEnd) {
+    public void quickSort(int start, int end) {
+        int pivotIndex;
+        if (start < end) {
             /*
                 select pivot and re-arrange elements in two partitions such as
                 all array[start … p-1] are less than pivot = array [p] and
                 all array[p+1 … end] are >= pivot
              */
-            iPivotIndex = partition(iStart, iEnd);
+            pivotIndex = partition(start, end);
 
             // sort first partition of the array (from start to pivot_index-1)
-            quickSort(iStart, iPivotIndex - 1);
+            quickSort(start, pivotIndex - 1);
 
             //sort second partition of the array
-            quickSort(iPivotIndex + 1, iEnd);
+            quickSort(pivotIndex + 1, end);
         } else // do nothing, the array has one element, so it is sorted
         {
             return;
         }
     }
 
-    public int partition(int iStart, int iEnd) {
-        int iUp, iDown;
+    public int partition(int start, int end) {
+        int up, down;
         ElementType pivot;
 
         // select the first element as pivot
-        pivot = get(iStart);
+        pivot = get(start);
 
         // set the UP and DOWN indexes
-        iUp = iStart;
-        iDown = iEnd;
+        up = start;
+        down = end;
 
         // as long as UP and DOWN indexes did not pass each other
-        while (iUp < iDown) {
+        while (up < down) {
             // increment UP index until found first element higher than pivot
-            while (iUp < iEnd && ((Comparable) get(iUp)).compareTo((Comparable) pivot) <= 0) {
-                iUp = iUp + 1;
+            while (up < end && ((Comparable) get(up)).compareTo((Comparable) pivot) <= 0) {
+                up = up + 1;
             }
 
             // decrement DOWN until found first element smaller than  pivot
-            while (iDown > iStart && (((Comparable) get(iDown)).compareTo((Comparable) pivot) > 0)) {
-                iDown = iDown - 1;
+            while (down > start && (((Comparable) get(down)).compareTo((Comparable) pivot) > 0)) {
+                down = down - 1;
             }
 
             // if UP and DOWN indexes did not pass each other
-            if (iUp < iDown) {
-                ElementType elementUp = get(iUp);
+            if (up < down) {
+                ElementType elementUp = get(up);
                 //swap the two elements found
-                set(iUp, get(iDown));
-                set(iDown, elementUp);
+                set(up, get(down));
+                set(down, elementUp);
             }
         }
 
         // UP and DOWN indexes have passed each other, so swap pivot with the element on DOWN position
-        set(iStart, get(iDown));
-        set(iDown, pivot);
-        return iDown;
+        set(start, get(down));
+        set(down, pivot);
+        return down;
     }
 
     /* MERGE SORT */
-    public void mergeSort(int iStart, int iEnd) {
-        int iMiddle;
-        if (iStart < iEnd) {
-            iMiddle = (iStart + iEnd) / 2;
-            mergeSort(iStart, iMiddle);
-            mergeSort(iMiddle + 1, iEnd);
-            merge(iStart, iMiddle, iEnd);
+    public void mergeSort(int start, int end) {
+        int middle;
+        if (start < end) {
+            middle = (start + end) / 2;
+            mergeSort(start, middle);
+            mergeSort(middle + 1, end);
+            merge(start, middle, end);
         }
     }
 
-    public void merge(int iLeft, int iMiddle, int iRight) {
-        int iCount = iLeft;
-        int jCount = iMiddle + 1;
+    public void merge(int left, int middle, int right) {
+        int iCount = left;
+        int jCount = middle + 1;
         int kCount = 0;
         ArrayList<ElementType> tempArray = new ArrayList<>();
 
-        while (iCount <= iMiddle && jCount <= iRight) {
-            //if (get(iCount).compareTo(get(jCount)) < 0) {
-                if(((Comparable) get(iCount)).compareTo((Comparable) get(jCount)) < 0) { 
+        while (iCount <= middle && jCount <= right) {
+            if(((Comparable) get(iCount)).compareTo((Comparable) get(jCount)) < 0) { 
                 tempArray.add(kCount, get(iCount));
                 iCount++;
             } else {
@@ -91,59 +90,55 @@ public class Sorting <ElementType> extends ArrayList<ElementType>{
             kCount++;
         }
 
-        while (iCount <= iMiddle) {
+        while (iCount <= middle) {
             tempArray.add(kCount, get(iCount));
             kCount++;
             iCount++;
         }
 
-        while (jCount <= iRight) {
+        while (jCount <= right) {
             tempArray.add(kCount, get(jCount));
             kCount++;
             jCount++;
         }
 
-        for (iCount = iLeft, kCount = 0; iCount <= iRight; iCount++, kCount++){
+        for (iCount = left, kCount = 0; iCount <= right; iCount++, kCount++){
             set(iCount, (ElementType) tempArray.get(kCount));
-            //do not use the one below!!!!!!!!!!! it's just for demonstration purposes
-            //add(iCount, tempArray.get(kCount));
         }
     }
 
     /* INSERTION SORT */
     public void insertionSort() {
-        int iCount;
-        int iPosition;
+        int count;
+        int position;
         ElementType keyElement;
-        for (iCount = 1; iCount < size(); iCount++) {
-            keyElement = get(iCount);
-            iPosition = iCount;
+        for (count = 1; count < size(); count++) {
+            keyElement = get(count);
+            position = count;
 
-            while (iPosition > 0 && ((Comparable) get(iPosition - 1)).compareTo((Comparable) keyElement) > 0) {
-                ElementType elemPosMinusOne = get(iPosition - 1);
-                set(iPosition, elemPosMinusOne);
-                iPosition = iPosition - 1;
+            while (position > 0 && ((Comparable) get(position - 1)).compareTo((Comparable) keyElement) > 0) {
+                ElementType elemPosMinusOne = get(position - 1);
+                set(position, elemPosMinusOne);
+                position = position - 1;
             }
-            set(iPosition, keyElement);
+            set(position, keyElement);
         }
     }
 
     /* BUBBLE SORT */
     public void simpleBubbleSort() {
-        // write the simpleBubbleSort() method
-        //it simply compares neighbours repeatedly until there are no more swaps        
-        boolean bMoreSwaps = true;
+        boolean moreSwaps = true;
 
-        while (bMoreSwaps == true) {
-            int iCount;
-            bMoreSwaps = false;
-            for (iCount = 0; iCount < size() - 1; iCount++) {
-                Comparable elementAtiCount = (Comparable) get(iCount);
-                Comparable elementAtiCountPlus = (Comparable) get(iCount + 1);
+        while (moreSwaps == true) {
+            int count;
+            moreSwaps = false;
+            for (count = 0; count < size() - 1; count++) {
+                Comparable elementAtiCount = (Comparable) get(count);
+                Comparable elementAtiCountPlus = (Comparable) get(count + 1);
 
                 if (elementAtiCount.compareTo(elementAtiCountPlus) > 0) {
-                    swap(iCount, iCount + 1);
-                    bMoreSwaps = true;
+                    swap(count, count + 1);
+                    moreSwaps = true;
                 }
             }
         }
@@ -167,7 +162,26 @@ public class Sorting <ElementType> extends ArrayList<ElementType>{
         add(inPos2, objPos1);
     }
 
-    
+    int binarySearch(ElementType toSearch, int start, int end) {
+        boolean found = false;
+        int middle = 0;
+        while ((start <= end) && (found == false)) {
+            middle = (start + end) / 2;
+            if (((Comparable) get(middle)).compareTo((Comparable) toSearch) == 0) {
+                found = true;
+            } else if (((Comparable) get(middle)).compareTo((Comparable) toSearch) < 0) {
+                start = middle + 1;
+            } else {
+                end = middle - 1;
+            }
+        }
+        if (found == true) {
+            return middle;
+        } else {
+            return -1;
+        }
+    }
+
 }
 
 
