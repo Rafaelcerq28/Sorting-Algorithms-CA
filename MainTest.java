@@ -1,8 +1,6 @@
 public class MainTest {
 
     public static int binarySearch(int [] list, int toFind){
-        int cnt = 0;
-
 
         boolean found = false;
         int left = 0;
