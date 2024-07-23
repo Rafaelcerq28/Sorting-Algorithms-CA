@@ -36,7 +36,7 @@ public class readVehiclesData {
 
         System.out.println("\bubble Sort:");
         startTime = System.currentTimeMillis();
-        //running the sorting method    
+        //running the sorting method
         vehiclesBSorting.simpleBubbleSort();
         endTime = System.currentTimeMillis();
         executionTime = endTime - startTime;

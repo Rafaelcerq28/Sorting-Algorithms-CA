@@ -3,7 +3,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+ * This class has the objective of load the data from a csv file and 
+ * return an array of a chosen amount
+ */
 public class VehiclesLoader {
+
     Sorting<Vehicles> loadData(int stopAt) throws FileNotFoundException{
         //parsing and reading the CSV file data into the object array
         File directory = new File("./");
