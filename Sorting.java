@@ -162,24 +162,25 @@ public class Sorting <ElementType> extends ArrayList<ElementType>{
         add(inPos2, objPos1);
     }
 
-    int binarySearch(ElementType toSearch, int start, int end) {
-        boolean found = false;
-        int middle = 0;
-        while ((start <= end) && (found == false)) {
-            middle = (start + end) / 2;
-            if (((Comparable) get(middle)).compareTo((Comparable) toSearch) == 0) {
-                found = true;
-            } else if (((Comparable) get(middle)).compareTo((Comparable) toSearch) < 0) {
-                start = middle + 1;
+    public static int binarySearch(ArrayList<String> arr, String valor) {
+        int left = 0;
+        int right = arr.size() - 1;
+        // int right = arr.length - 1;
+
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            String midValue = arr.get(mid);
+
+            int cmp = midValue.compareTo(valor);
+            if (cmp == 0) {
+                return mid;
+            } else if (cmp < 0) {
+                left = mid + 1;
             } else {
-                end = middle - 1;
+                right = mid - 1;
             }
         }
-        if (found == true) {
-            return middle;
-        } else {
-            return -1;
-        }
+        return -1; // Valor não encontrado
     }
 
 }

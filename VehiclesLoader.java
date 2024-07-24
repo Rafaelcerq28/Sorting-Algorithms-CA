@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -40,4 +41,34 @@ public class VehiclesLoader {
 
         return vehicles;
     }
+
+    Sorting<String> loadColumData() throws FileNotFoundException{
+        //parsing and reading the CSV file data into the object array
+        File directory = new File("./");
+        String name = directory.getAbsolutePath() + "//vehicles.csv";
+        //Vehicles[] vehicle;
+        Sorting<Vehicles> vehicles = new Sorting<>();
+
+        try (Scanner scanner = new Scanner(new File(name))) {
+
+            // this will just print the header in CSV file
+            scanner.nextLine();
+            String sGetData;
+            while (scanner.hasNextLine()) {
+
+                sGetData = scanner.nextLine();
+                String[] data = sGetData.split(",");
+                vehicles.add(new Vehicles(Integer.parseInt(data[0]), data[1], data[2], data[3], Integer.parseInt(data[4]), Long.parseLong(data[5])));
+            }
+            //closes the scanner
+        }
+
+        Sorting<String> location = new Sorting<>();
+        for (Vehicles vehicle : vehicles) {
+            location.add(vehicle.getsLocation());
+        }
+
+        return location;
+    }
+
 }

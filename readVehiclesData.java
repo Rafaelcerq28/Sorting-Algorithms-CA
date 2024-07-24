@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class readVehiclesData {
 
     public static void main(String[] args) throws Exception {
@@ -10,7 +14,7 @@ public class readVehiclesData {
         //Loading the data into the arrays
         Sorting<Vehicles> vehiclesBSorting = (Sorting<Vehicles>) loader.loadData(dataSize);
         Sorting<Vehicles> vehiclesQSorting = (Sorting<Vehicles>) loader.loadData(dataSize);
-        
+        Sorting<String> toSearch = loader.loadColumData();
         // Checking if the data was loaded
         System.out.println("vehiclesBSorting size: "+ vehiclesBSorting.size());
         System.out.println("vehiclesQSorting size: " + vehiclesQSorting.size());
@@ -48,23 +52,10 @@ public class readVehiclesData {
             System.out.println(vehiclesBSorting.get(i));
         }
 
-        //Value I want to search
-        long valueToSearch = 1000;
-
-        //Object used to search by the value in the list
-        Vehicles vehicleToSearch = new Vehicles(932, 
-                                "Fusca", 
-                                "Diesel",
-                                "Tennessee", 
-                                123123, 
-                                valueToSearch);
-
-        System.out.println("Searching for value: "+valueToSearch +"\n"+vehiclesBSorting.binarySearch(vehicleToSearch, 0, vehiclesBSorting.size() -1));
-
-        //Testing with a different value
-        valueToSearch = 1001;
-        vehicleToSearch.setlValue(valueToSearch);
-        System.out.println("Searching for value: "+valueToSearch +"\n"+vehiclesBSorting.binarySearch(vehicleToSearch, 0, vehiclesBSorting.size() -1));
-
+        toSearch.sort(null);
+        
+        System.out.println(toSearch.binarySearch(toSearch, ""));
+        
+        
     }
 }
