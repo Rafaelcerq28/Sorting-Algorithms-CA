@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 /*
- * This class has the objective of load the data from a csv file and 
- * return an array of a chosen amount
+ * This class has the purpouse of load the data from a csv file and 
+ * return an array of a chosen amount and a list of locations
  */
 public class VehiclesLoader {
 
