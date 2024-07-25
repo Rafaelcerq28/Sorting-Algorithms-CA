@@ -16,10 +16,7 @@ public class Vehicles implements Comparable<Object>{
         this.lValue = lInValue;
     }
 
-    /*
-    Edit this section so it compares the appropriate
-    column you wish to sort by
-        */
+    /* Changed this methosd to compare by value*/  
     @Override
     public int compareTo(Object obj) {
         Vehicles myVehicles = (Vehicles) obj;

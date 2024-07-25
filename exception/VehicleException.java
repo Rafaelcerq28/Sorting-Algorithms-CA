@@ -5,9 +5,9 @@ import javax.swing.JOptionPane;
 public class VehicleException extends Exception{
 
     String msg;
-
+    
+    //Constructors
     public VehicleException() {
-        //empty constructor
     }
 
     public VehicleException(String msg){
@@ -15,8 +15,8 @@ public class VehicleException extends Exception{
         this.msg = msg;
     }
 
+    //Exception when the user exists
     public void userAlreadyExists(){
-        JOptionPane.showMessageDialog(null, "This ID is already in use");
-        //return this.msg;
+        JOptionPane.showMessageDialog(null, "This ID is already in use or invalid");
     }
 }

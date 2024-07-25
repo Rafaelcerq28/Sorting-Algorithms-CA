@@ -10,6 +10,7 @@ import java.util.Scanner;
  */
 public class VehiclesLoader {
 
+    //This method returns a list of vehicles from a determided size
     Sorting<Vehicles> loadData(int stopAt) throws FileNotFoundException{
         //parsing and reading the CSV file data into the object array
         File directory = new File("./");
@@ -42,6 +43,7 @@ public class VehiclesLoader {
         return vehicles;
     }
 
+    //this method return a list of Strings containing only the location column
     Sorting<String> loadColumData() throws FileNotFoundException{
         //parsing and reading the CSV file data into the object array
         File directory = new File("./");
