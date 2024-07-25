@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class readVehiclesData {
+public class PartOne {
 
     public static void main(String[] args) throws Exception {
 
         //Instanciating VehiclesLoader class
         VehiclesLoader loader = new VehiclesLoader();
-        int dataSize = 100;
+        int dataSize = 2000;
 
 
         //Loading the data into the arrays
@@ -20,6 +20,7 @@ public class readVehiclesData {
         System.out.println("vehiclesBSorting size: "+ vehiclesBSorting.size());
         System.out.println("vehiclesQSorting size: " + vehiclesQSorting.size());
         System.out.println("toSearch size: " + toSearch.size());
+
         // Test to check if the data was sorted
         // System.out.println("Before sorting");
         // for(int i=0;i<vehiclesBSorting.size();i++){
@@ -56,14 +57,14 @@ public class readVehiclesData {
         // }
 
         toSearch.sort(null);
-        String elementToSearch = "";
 
-        // toSearch.binarySearch(toSearch, "")
+        String elementToSearch = "Colorado";
+
 
         if(toSearch.binarySearch(toSearch, elementToSearch) == -1){
-           System.out.println(elementToSearch + " was not found in the toSearch list!"); 
+           System.out.println(elementToSearch + " was NOT FOUND in the vehicles list!"); 
         }else{
-            System.out.println(elementToSearch + " was found in the toSearch list");
+            System.out.println(elementToSearch + " was FOUND in the vehicles list");
         }
         
     }

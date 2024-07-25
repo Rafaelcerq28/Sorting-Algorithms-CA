@@ -2,6 +2,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public class Sorting <ElementType> extends ArrayList<ElementType>{
+    
     /* QUICK SORT */
     public void quickSort(int start, int end) {
         int pivotIndex;
@@ -62,69 +63,6 @@ public class Sorting <ElementType> extends ArrayList<ElementType>{
         return down;
     }
 
-    /* MERGE SORT */
-    public void mergeSort(int start, int end) {
-        int middle;
-        if (start < end) {
-            middle = (start + end) / 2;
-            mergeSort(start, middle);
-            mergeSort(middle + 1, end);
-            merge(start, middle, end);
-        }
-    }
-
-    public void merge(int left, int middle, int right) {
-        int iCount = left;
-        int jCount = middle + 1;
-        int kCount = 0;
-        ArrayList<ElementType> tempArray = new ArrayList<>();
-
-        while (iCount <= middle && jCount <= right) {
-            if(((Comparable) get(iCount)).compareTo((Comparable) get(jCount)) < 0) { 
-                tempArray.add(kCount, get(iCount));
-                iCount++;
-            } else {
-                tempArray.add(kCount, get(jCount));
-                jCount++;
-            }
-            kCount++;
-        }
-
-        while (iCount <= middle) {
-            tempArray.add(kCount, get(iCount));
-            kCount++;
-            iCount++;
-        }
-
-        while (jCount <= right) {
-            tempArray.add(kCount, get(jCount));
-            kCount++;
-            jCount++;
-        }
-
-        for (iCount = left, kCount = 0; iCount <= right; iCount++, kCount++){
-            set(iCount, (ElementType) tempArray.get(kCount));
-        }
-    }
-
-    /* INSERTION SORT */
-    public void insertionSort() {
-        int count;
-        int position;
-        ElementType keyElement;
-        for (count = 1; count < size(); count++) {
-            keyElement = get(count);
-            position = count;
-
-            while (position > 0 && ((Comparable) get(position - 1)).compareTo((Comparable) keyElement) > 0) {
-                ElementType elemPosMinusOne = get(position - 1);
-                set(position, elemPosMinusOne);
-                position = position - 1;
-            }
-            set(position, keyElement);
-        }
-    }
-
     /* BUBBLE SORT */
     public void simpleBubbleSort() {
         boolean moreSwaps = true;
@@ -162,7 +100,7 @@ public class Sorting <ElementType> extends ArrayList<ElementType>{
         add(inPos2, objPos1);
     }
 
-    public static int binarySearch(ArrayList<String> arr, String valor) {
+    public static int binarySearch(ArrayList<String> arr, String value) {
         int left = 0;
         int right = arr.size() - 1;
         // int right = arr.length - 1;
@@ -171,7 +109,7 @@ public class Sorting <ElementType> extends ArrayList<ElementType>{
             int mid = (left + right) / 2;
             String midValue = arr.get(mid);
 
-            int cmp = midValue.compareTo(valor);
+            int cmp = midValue.compareTo(value);
             if (cmp == 0) {
                 return mid;
             } else if (cmp < 0) {
