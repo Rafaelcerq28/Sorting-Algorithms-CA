@@ -8,7 +8,7 @@ public class PartOne {
 
         //Instanciating VehiclesLoader class
         VehiclesLoader loader = new VehiclesLoader();
-        int dataSize = 2000;
+        int dataSize = 1000;
 
 
         //Loading the data into the arrays for bubble sort, quick sort and binary search
